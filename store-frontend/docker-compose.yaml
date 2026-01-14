@@ -32,13 +32,9 @@ services:
 
   gateway:
     image: maalami/springbootgateway:latest
-    environment:
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=Mundialmente1
     restart: always
     depends_on:
       - store
-      - db
     ports:
       - "8442:8442"
   store:
