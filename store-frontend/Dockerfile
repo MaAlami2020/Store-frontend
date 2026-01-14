@@ -19,7 +19,7 @@ WORKDIR /app
 COPY store-frontend/package.json store-frontend/package-lock.json ./
 RUN npm install
 COPY . .
-RUN npx ng build --configuration production --output-path=dist/store-frontend --base-href=/new/
+#RUN npx ng build --configuration production --output-path=dist/store-frontend --base-href=/new/
 
 # Servir con Nginx
 FROM nginx:alpine
