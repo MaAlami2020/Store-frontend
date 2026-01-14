@@ -21,7 +21,7 @@ COPY store-frontend/*.ts ./
 COPY store-frontend/src/*.ts ./
 RUN npm install
 COPY store-frontend/ ./
-RUN npx ng build --configuration production
+RUN npm run build -- --configuration production
 
 # Servir con Nginx
 FROM nginx:alpine
