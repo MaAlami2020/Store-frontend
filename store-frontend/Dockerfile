@@ -19,11 +19,17 @@ WORKDIR /app
 COPY store-frontend/package.json store-frontend/package-lock.json ./
 RUN npm install
 COPY . .
-#RUN npx ng build --base-href=/new/
+RUN npx ng build --configuration production
 
 # Servir con Nginx
 FROM nginx:alpine
-COPY store-frontend/dist/store-frontend /usr/share/nginx/html
+# BORRA HTML POR DEFECTO
+RUN rm -rf /usr/share/nginx/html/*
+
+# COPIA ANGULAR REAL
+COPY --from=build /app/dist/store-frontend /usr/share/nginx/html
+
+#COPY store-frontend/dist/store-frontend /usr/share/nginx/html
 COPY store-frontend/nginx.conf /etc/nginx/nginx.conf
 COPY store-frontend/conf.d/default.conf /etc/nginx/conf.d/default.conf
 COPY store-frontend/certs/fullchain.pem /etc/ssl/fullchain.pem
