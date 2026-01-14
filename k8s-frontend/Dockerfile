@@ -12,10 +12,18 @@
 #COPY nginx.conf /etc/nginx/nginx.conf
 #COPY conf.d/default.conf /etc/nginx/conf.d/default.conf
 #EXPOSE 443
-FROM nginx:alpine
 
-COPY dist /usr/share/nginx/html
+FROM node:20-alpine AS build
+WORKDIR /app
+COPY . .
+RUN npm ci
+COPY . .
+RUN npx ng build --configuration production --output-path=dist/store-frontend --base-href=/new/
+
+# Servir con Nginx
+FROM nginx:alpine
+COPY --from=build /app/dist/store-frontend /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf
-#COPY default.conf /etc/nginx/conf.d/default.conf
+COPY conf.d/default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 443
