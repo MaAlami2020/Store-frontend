@@ -26,5 +26,5 @@ jobs:
       - name: Build and deploy image
         run: |
           IMAGE=maalami/springbootstorefrontend:latest
-          docker build -t $IMAGE -f k8s/Dockerfile .
+          docker build -t $IMAGE -f k8s-frontend/Dockerfile .
           docker push $IMAGE
