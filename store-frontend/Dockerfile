@@ -29,7 +29,8 @@ FROM nginx:alpine
 
 
 # COPIA ANGULAR REAL
-COPY --from=build /app/dist/store-frontend /usr/share/nginx/html
+RUN mkdir -p /usr/share/nginx/html/store
+COPY --from=build /app/dist/store-frontend /usr/share/nginx/html/store
 
 #COPY store-frontend/dist/store-frontend /usr/share/nginx/html
 COPY store-frontend/nginx.conf /etc/nginx/nginx.conf
