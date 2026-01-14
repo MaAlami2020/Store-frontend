@@ -20,7 +20,7 @@ import { NewShoesComponent } from './components/new-shoes/new-shoes.component';
 import { OrderComponent } from './components/order/order.component';
 
 export const routes: Routes = [
-    { path: 'home', component: HomeComponent },
+    { path: 'api/home', component: HomeComponent },
 //    { path: 'signup', component: SignupComponent },
     { path: 'order/orders/users/:id', component: UserOrdersComponent }, //user page with orders
     { path: 'order/orders/:id/detail', component: OrderComponent },// order detail
@@ -31,7 +31,7 @@ export const routes: Routes = [
     { path: 'inventory/items/:id', component: ItemComponent },
 //   { path: 'items/page', component: FavItemAggregationComponent },
     { path: 'store/signup', component: SignupComponent },
-    { path: 'store/login', component: LoginComponent }, //user login page
+    { path: 'api/store/login', component: LoginComponent }, //user login page
     { path: 'store/my_profile', component: MyprofileComponent }, //user profile
     { path: 'store/shoppingcart/page', component: ShoppingcartComponent}, //user shopping cart page
 //    { path: 'orders/new/users/:username', component: UserOrdersComponent},
