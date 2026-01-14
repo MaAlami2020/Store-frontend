@@ -14,11 +14,13 @@
 #EXPOSE 443
 
 FROM node:20-alpine AS build
-WORKDIR /store-frontend
+WORKDIR /app
 
 COPY store-frontend/*.json ./
+COPY store-frontend/*.ts ./
+COPY store-frontend/src/*.ts ./
 RUN npm install
-COPY . .
+COPY store-frontend/ ./
 RUN npx ng build --configuration production
 
 # Servir con Nginx
@@ -27,7 +29,7 @@ FROM nginx:alpine
 RUN rm -rf /usr/share/nginx/html/*
 
 # COPIA ANGULAR REAL
-COPY --from=build /store-frontend/dist/store-frontend /usr/share/nginx/html
+COPY --from=build /app/dist/store-frontend /usr/share/nginx/html
 
 #COPY store-frontend/dist/store-frontend /usr/share/nginx/html
 COPY store-frontend/nginx.conf /etc/nginx/nginx.conf
