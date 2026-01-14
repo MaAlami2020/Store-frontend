@@ -22,15 +22,15 @@ COPY store-frontend/src/*.ts ./
 RUN npm install
 COPY store-frontend/ ./
 RUN chmod +x node_modules/.bin/ng
-RUN npx ng build --configuration production --base-href=/store/
+RUN npx ng build --configuration production --base-href=/
 
 # Servir con Nginx
 FROM nginx:alpine
 
 
 # COPIA ANGULAR REAL
-RUN mkdir -p /usr/share/nginx/html/store
-COPY --from=build /app/dist/store-frontend /usr/share/nginx/html/store
+
+COPY --from=build /app/dist/store-frontend /usr/share/nginx/html
 
 #COPY store-frontend/dist/store-frontend /usr/share/nginx/html
 COPY store-frontend/nginx.conf /etc/nginx/nginx.conf
