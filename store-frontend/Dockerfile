@@ -16,7 +16,7 @@
 FROM node:20-alpine AS build
 WORKDIR /app
 
-COPY store-frontend/package.json store-frontend/package-lock.json ./
+COPY store-frontend/package.json store-frontend/package-lock.json store-frontend/angular.json ./
 RUN npm install
 COPY . .
 RUN npx ng build --configuration production
