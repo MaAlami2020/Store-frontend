@@ -1,0 +1,13 @@
+{
+  "routes": [
+    "/api/home",
+    "/api/store/login",
+    "/inventory/items",
+    "/inventory/items/clothes/page",
+    "/inventory/items/shoes/page",
+    "/order/orders/admin",
+    "/store/my_profile",
+    "/store/shoppingcart/page",
+    "/store/signup"
+  ]
+}
