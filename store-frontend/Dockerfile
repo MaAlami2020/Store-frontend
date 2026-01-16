@@ -30,7 +30,7 @@ FROM nginx:alpine
 
 # COPIA ANGULAR REAL
 
-COPY --from=build /app/dist/store-frontend /usr/share/nginx/html
+COPY --from=build /app/dist/store-frontend/ /usr/share/nginx/html/
 
 #COPY store-frontend/dist/store-frontend /usr/share/nginx/html
 #COPY store-frontend/nginx.conf /etc/nginx/nginx.conf
