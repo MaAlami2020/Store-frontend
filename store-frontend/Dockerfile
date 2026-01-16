@@ -33,7 +33,7 @@ FROM nginx:alpine
 COPY --from=build /app/dist/store-frontend /usr/share/nginx/html
 
 #COPY store-frontend/dist/store-frontend /usr/share/nginx/html
-COPY store-frontend/nginx.conf /etc/nginx/nginx.conf
+#COPY store-frontend/nginx.conf /etc/nginx/nginx.conf
 COPY store-frontend/conf.d/default.conf /etc/nginx/conf.d/default.conf
 COPY store-frontend/certs/fullchain.pem /etc/ssl/fullchain.pem
 COPY store-frontend/certs/privkey.pem /etc/ssl/privkey.pem
