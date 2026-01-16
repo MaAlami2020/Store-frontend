@@ -25,7 +25,6 @@ RUN chmod +x node_modules/.bin/ng
 RUN npx ng build --configuration production --base-href=/
 
 RUN ls -l /app/dist
-RUN ls -l /app/dist/store-frontend
 
 # Servir con Nginx
 FROM nginx:alpine
@@ -33,7 +32,7 @@ FROM nginx:alpine
 
 # COPIA ANGULAR REAL
 
-COPY --from=build /app/dist/store-frontend/store-frontend/ /usr/share/nginx/html/
+COPY --from=build /app/dist/store-frontend/ /usr/share/nginx/html/
 
 #COPY store-frontend/dist/store-frontend /usr/share/nginx/html
 #COPY store-frontend/nginx.conf /etc/nginx/nginx.conf
