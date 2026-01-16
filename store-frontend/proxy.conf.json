@@ -1,5 +1,5 @@
 {
-  "/store/api/**": {
+  "/new/store/api/**": {
     "target": "http://localhost:8442",
     "secure": false,
     "changeOrigin": true,
