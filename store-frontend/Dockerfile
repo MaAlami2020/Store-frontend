@@ -22,9 +22,9 @@ COPY store-frontend/src/*.ts ./
 RUN npm install
 COPY store-frontend/ ./
 RUN chmod +x node_modules/.bin/ng
-RUN npx ng build --configuration production --base-href=/
+RUN npx ng build --configuration production --base-href=/spa/
 
-RUN ls -l /app/dist
+RUN ls -l /app/dist/store-frontend
 
 # Servir con Nginx
 FROM nginx:alpine
