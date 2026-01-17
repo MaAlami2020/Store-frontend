@@ -33,6 +33,7 @@ FROM nginx:alpine
 # COPIA ANGULAR REAL
 RUN rm -rf /usr/share/nginx/html/*
 COPY --from=build /app/dist/store-frontend/browser/* /usr/share/nginx/html/
+RUN ls /usr/share/nginx/html/
 COPY --from=build /app/dist/store-frontend/server/* /usr/share/nginx/html/
 COPY --from=build /app/dist/store-frontend/prerendered-routes.json /usr/share/nginx/html/
 
