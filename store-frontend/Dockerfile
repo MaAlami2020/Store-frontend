@@ -13,18 +13,18 @@
 #COPY conf.d/default.conf /etc/nginx/conf.d/default.conf
 #EXPOSE 443
 
-FROM node:20-alpine AS build
-WORKDIR /app
-
-COPY store-frontend/*.json ./
-COPY store-frontend/*.ts ./
-COPY store-frontend/src/*.ts ./
-RUN npm install
-COPY store-frontend/ ./
-RUN chmod +x node_modules/.bin/ng
-RUN npx ng build --configuration production --base-href=/
-
-RUN ls -l /app/dist/store-frontend
+#FROM node:20-alpine AS build
+#WORKDIR /app
+#
+#COPY store-frontend/*.json ./
+#COPY store-frontend/*.ts ./
+#COPY store-frontend/src/*.ts ./
+#RUN npm install
+#COPY store-frontend/ ./
+#RUN chmod +x node_modules/.bin/ng
+#RUN npx ng build --configuration production --base-href=/
+#
+#RUN ls -l /app/dist/store-frontend
 
 # Servir con Nginx
 FROM nginx:alpine
@@ -32,10 +32,8 @@ FROM nginx:alpine
 
 # COPIA ANGULAR REAL
 RUN rm -rf /usr/share/nginx/html/*
-COPY --from=build /app/dist/store-frontend/browser/* /usr/share/nginx/html/
+COPY --from=build /app/dist/store-frontend/ /usr/share/nginx/html/
 RUN ls /usr/share/nginx/html/
-COPY --from=build /app/dist/store-frontend/server/* /usr/share/nginx/html/
-COPY --from=build /app/dist/store-frontend/prerendered-routes.json /usr/share/nginx/html/
 
 #COPY store-frontend/dist/store-frontend /usr/share/nginx/html
 #COPY store-frontend/nginx.conf /etc/nginx/nginx.conf
